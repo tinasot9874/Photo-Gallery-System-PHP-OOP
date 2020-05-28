@@ -1,3 +1,8 @@
+<?php
+    ob_start();
+    include ("core/init.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
