@@ -13,6 +13,8 @@ class User{
     {
 
     }
+
+    /****** DATABASE Methods ********/
     public static function find_query($sql){
         global $database;
         $result = $database->query($sql);
@@ -62,6 +64,28 @@ class User{
     }
 
 
+    /****** END DATABASE Methods ********/
+
+
+
+
+
+
+
+    /****** USER Methods ********/
+    // verify user method
+    public static function verify_user($username, $password){
+
+        global $database;
+
+        $username = $database->escape_string($username);
+        $password = $database->escape_string($password);
+
+        $sql = "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}' ";
+
+        $the_result_array = self::find_query($sql);
+        return !empty($the_result_array) ? array_shift($the_result_array) : false;
+    }
 
 
 }
