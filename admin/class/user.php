@@ -34,12 +34,14 @@ class User{
 
     public static function find_id_users($id_user){
         $result =  self::find_query("SELECT * FROM users WHERE id = $id_user ");
+
 //        if (!empty($result)){
 //            $get_first_element = array_shift($the_record);
 //            return $get_first_element;
 //        }else{
 //            return false;
 //        }
+
         return !empty($result) ? array_shift($result) : false;
     }
 
@@ -70,48 +72,59 @@ class User{
 
 
 
-
-
     /****** USER Methods ********/
-    // verify user method
-    public static function verify_user($username, $password){
+        // verify user method
+        public static function verify_user($username, $password){
 
-        global $database;
+            global $database;
 
-        $username = $database->escape_string($username);
-        $password = $database->escape_string($password);
+            $username = $database->escape_string($username);
+            $password = $database->escape_string($password);
 
-        $sql = "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}' ";
+            $sql = "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}' ";
 
-        $the_result_array = self::find_query($sql);
-        return !empty($the_result_array) ? array_shift($the_result_array) : false;
-    }
-
-
-    // CREATE Method
-
-    public function create(){
-
-        global $database;
-
-        $sql  = "INSERT INTO users(username, password, first_name, last_name)";
-        $sql .= "VALUES ('";
-        $sql .= $database->escape_string($this->username) . "', '";
-        $sql .= $database->escape_string($this->password) . "', '";
-        $sql .= $database->escape_string($this->first_name) . "', '";
-        $sql .= $database->escape_string($this->last_name) . "')";
-
-
-        if ($database->query($sql)){
-            $this->id = $database->the_insert_id();
-            return true;
-        }else{
-            return false;
+            $the_result_array = self::find_query($sql);
+            return !empty($the_result_array) ? array_shift($the_result_array) : false;
         }
 
 
+        // CREATE Method
 
-    }
+        public function create(){
+
+            global $database;
+
+            $sql  = "INSERT INTO users(username, password, first_name, last_name)";
+            $sql .= "VALUES ('";
+            $sql .= $database->escape_string($this->username) . "', '";
+            $sql .= $database->escape_string($this->password) . "', '";
+            $sql .= $database->escape_string($this->first_name) . "', '";
+            $sql .= $database->escape_string($this->last_name) . "')";
+
+
+            if ($database->query($sql)){
+                $this->id = $database->the_insert_id();
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        // UPDATE Method
+
+        public function update(){
+            global $database;
+
+            $sql  = "UPDATE users SET ";
+            $sql .= "password = '" . $database->escape_string($this->password) . "', ";
+            $sql .= "first_name = '" . $database->escape_string($this->first_name) . "', ";
+            $sql .= "last_name = '" . $database->escape_string($this->last_name) . "' ";
+            $sql .= " WHERE id = " . $database->escape_string($this->id);
+
+            $database->query($sql);
+            return (mysqli_affected_rows($database->conn) == 1) ? true : false;
+
+        }
 
 
 }
