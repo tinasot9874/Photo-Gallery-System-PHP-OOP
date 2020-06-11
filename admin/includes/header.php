@@ -1,6 +1,13 @@
 <?php
-    ob_start();
-    include ("core/init.php");
+ require_once ("core/init.php");
+?>
+
+<?php
+ //check login
+if (!$session->is_signed_in()){
+    redirect("login.php");
+}
+
 ?>
 
 <!DOCTYPE html>
