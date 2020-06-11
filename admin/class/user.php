@@ -87,6 +87,13 @@ class User{
             return !empty($the_result_array) ? array_shift($the_result_array) : false;
         }
 
+        // SAVE Method
+
+        public function save(){
+            return isset($this->id) ? $this->update() : $this->create();
+        }
+
+
 
         // CREATE Method
 
