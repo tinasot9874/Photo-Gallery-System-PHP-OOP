@@ -1,7 +1,8 @@
 <?php
 
 class User{
-
+    protected static $db_table = "users";
+    protected static $db_table_fields = array('username', 'password', 'first_name', 'last_name');
     public $id;
     public $username;
     public $first_name;
@@ -73,6 +74,7 @@ class User{
 
 
     /****** USER Methods ********/
+
         // verify user method
         public static function verify_user($username, $password){
 
@@ -86,6 +88,34 @@ class User{
             $the_result_array = self::find_query($sql);
             return !empty($the_result_array) ? array_shift($the_result_array) : false;
         }
+
+        //function creates an array with the key is the value of array $db_table_fields and the value is the value of the object is assigned
+
+        protected function properties(){
+                $properties = array();
+                foreach (self::$db_table_fields as $db_field){
+                    if (property_exists($this, $db_field)){
+                        $properties[$db_field] = $this->$db_field;
+                        // $properties[$db_field] : get the value of array $db_table_fields to assign to the key of array $properties
+                        // $this->$db_field : The value of the object is assigned
+                    }
+                }
+                return $properties;  // return a array
+            }
+
+        // function to escape string from function properties()
+        protected function escape_string_properties(){
+            global $database;
+
+            $escape_string_properties = array();
+
+            foreach ($this->properties() as $key => $value){
+                $escape_string_properties[$key] = $database->escape_string($value);
+            }
+            return $escape_string_properties;
+        }
+
+
 
         // SAVE Method
 
@@ -101,12 +131,10 @@ class User{
 
             global $database;
 
-            $sql  = "INSERT INTO users(username, password, first_name, last_name)";
-            $sql .= "VALUES ('";
-            $sql .= $database->escape_string($this->username) . "', '";
-            $sql .= $database->escape_string($this->password) . "', '";
-            $sql .= $database->escape_string($this->first_name) . "', '";
-            $sql .= $database->escape_string($this->last_name) . "')";
+            $properties = $this->escape_string_properties();
+
+            $sql  = "INSERT INTO ".self::$db_table." (". implode(",",array_keys($properties)) .")";
+            $sql .= "VALUES ('". implode("','",array_values($properties)) ."')";
 
 
             if ($database->query($sql)){
@@ -121,11 +149,21 @@ class User{
 
         public function update(){
             global $database;
+            $properties = $this->escape_string_properties();
 
-            $sql  = "UPDATE users SET ";
-            $sql .= "password = '" . $database->escape_string($this->password) . "', ";
-            $sql .= "first_name = '" . $database->escape_string($this->first_name) . "', ";
-            $sql .= "last_name = '" . $database->escape_string($this->last_name) . "' ";
+            $properties_pairs = array();
+            foreach ($properties as $key => $value){
+                $properties_pairs[] = "{$key}='{$value}'";
+                // $properties_pairs[] = array (
+                //                              [..] => $key='$value' of $properties
+                //                               [0] => username='value'
+                //                               [1] => password='value'
+                //
+                //                             )
+            }
+
+            $sql  = "UPDATE ".self::$db_table." SET ";
+            $sql .= implode(", ",$properties_pairs); // = column1='value', column2='value2',...
             $sql .= " WHERE id = " . $database->escape_string($this->id);
 
             $database->query($sql);
@@ -137,7 +175,7 @@ class User{
 
         public function delete(){
             global $database;
-            $sql  = "DELETE FROM users ";
+            $sql  = "DELETE FROM ".self::$db_table." ";
             $sql .= "WHERE id =".$database->escape_string($this->id)." LIMIT 1";
 
             $database->query($sql);
