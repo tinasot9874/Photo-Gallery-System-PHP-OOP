@@ -18,7 +18,7 @@ class User extends Db_object {
     /****** USER Methods ********/
 
     // verify user method
-    public static function verify($username, $password){
+    public static function verify_user($username, $password){
 
             global $database;
 
