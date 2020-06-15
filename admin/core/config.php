@@ -10,7 +10,7 @@ define("DB_NAME","gallery_db");
 $root_path = substr(__DIR__, 0, -11);
 define('DS', DIRECTORY_SEPARATOR);
 define('SITE_ROOT', $root_path);
-echo SITE_ROOT;
+define('INCLUDES_PATH', SITE_ROOT.DS.'admin'.DS.'uploads');
 
 
 ?>
