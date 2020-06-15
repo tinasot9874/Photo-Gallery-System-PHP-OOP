@@ -28,7 +28,7 @@ if (!$session->is_signed_in()){
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
-
+    <link href="css/styles.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <script src="https://kit.fontawesome.com/ce8f710565.js" crossorigin="anonymous"></script>
 
