@@ -11,7 +11,7 @@
     <div id="page-wrapper">
 
         <div class="container-fluid">
-
+            <div class="col-md-12">
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
@@ -29,7 +29,65 @@
                     </ol>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div>
+                                <div class="col-sm-4">
+                                    <a href="upload.php" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row" style="margin-bottom: 25px; margin-top: 25px;">
+                                <div class="col-md-3">
+                                    <input class="form-control" id="myInput" type="text" placeholder="Search Photo">
+                                </div>
+                            </div>
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Type</th>
+                                    <th>Size</th>
+                                    <th>Day Upload</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                <?php $photo = Photo::find_all();
+                                foreach ($photo as $value):
+                                ?>
+                                <tr>
+                                    <td><img class="img-responsive" style="width:200px;height: 100px;object-fit: contain; " src="<?php echo $value->picture_path() ?>" alt=""></td>
+                                    <td><?php echo $value->title; ?></td>
+                                    <td><?php $category = Category::find_by_id($value->categories_id); echo $category->category_name;  ?></td>
+                                    <td><?php echo $value->type; ?></td>
+                                    <td><?php echo $value->size; ?></td>
+                                    <td><?php echo $value->create_at; ?></td>
+                                    <td>
+
+                                        <a style="cursor: pointer;" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
+                                        <a style="cursor: pointer;" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             <!-- /.row -->
+            </div>
 
         </div>
         <!-- /.container-fluid -->
