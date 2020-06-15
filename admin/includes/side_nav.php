@@ -13,9 +13,6 @@
         <li>
             <a href="photos.php"><i class="fas fa-images"></i> Photos</a>
         </li>
-        <li>
-            <a href="upload.php"><i class="fas fa-upload"></i> Uploads</a>
-        </li>
 <!--        <li>-->
 <!--            <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>-->
 <!--        </li>-->
