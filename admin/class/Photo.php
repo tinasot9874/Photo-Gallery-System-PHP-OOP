@@ -4,18 +4,19 @@
 class Photo extends Db_object{
 
     protected static $db_table = "photos";
-    protected static $db_table_fields = array('title', 'categories_id', 'filename', 'type', 'size');
+    protected static $db_table_fields = array('title', 'categories_id', 'filename', 'type', 'size', 'create_at');
     public $id;
     public $title;
     public $categories_id;
     public $filename;
     public $type;
     public $size;
+    public $create_at;
 
     // file uploads
     public $tmp_path;
     public $upload_directory = "images";
-    public $custom_errors = array();
+    public $errors = array();
     public $upload_errors_array = array(
 
         UPLOAD_ERR_OK           => 'There is no error, the file uploaded with success',
@@ -28,6 +29,66 @@ class Photo extends Db_object{
         UPLOAD_ERR_EXTENSION    => 'A PHP extension stopped the file upload.',
     );
 
+    // this is passing $_FILES['uploaded_file'] as an argument
+
+    public function set_file($file){
+
+        // Allow certain file formats
+        $file_ext=strtolower(end(explode('.',$file['type'])));
+        $extensions= array("image/jpeg","image/jpg","image/png");
+        if(in_array($file_ext,$extensions)=== false){
+            $this->errors[] = "Sorry, only JPG, JPEG & PNG files are allowed.";
+        }
+
+        if (empty($file) || !$file || !is_array($file)){
+            $this->errors[] = "There was no file uploaded !";
+            return false;
+        }elseif($file['error'] !=0 ){
+            $this->errors[] = $this->upload_errors_array[$file['error']];
+            return false;
+        }else{
+            $this->filename = basename($file['name']); // Name of the file
+            $this->tmp_path = $file['tmp_name'];
+            $this->type     = $file['type'];
+            $this->size     = $file['size'];
+            $this->create_at= date("Y-m-d");
+        }
+    }
+
+    public function save(){
+        if ($this->id){
+            $this->update();
+        }else{
+            if (!empty($this->errors)){
+                return false;
+            }
+            if (empty($this->filename) || empty($this->tmp_path)){
+                $this->errors[] = "The file was not available!";
+                return false;
+            }
+
+
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->filename;
+            if (file_exists($target_path)){
+                $this->errors[] = "The file {$this->filename} already exists";
+                return false;
+            }
+
+            if (move_uploaded_file($this->tmp_path, $target_path)){
+                if ($this->create()){
+                    unset($this->tmp_path);
+                    return true;
+                }
+            }else{
+                $this->errors[] = "The file directory does not have permission!";
+                return false;
+            }
+        }
+    }
+
+    public function picture_path(){
+        return $this->upload_directory.DS.$this->filename;
+    }
 
 
 }
