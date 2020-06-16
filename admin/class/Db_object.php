@@ -20,6 +20,10 @@ class Db_object
         return static::find_by_query("SELECT * FROM ".static::$db_table." ");
     }
 
+    public static function find_all_except_by($id){
+        return static::find_by_query("SELECT * FROM ".static::$db_table." WHERE id NOT IN ($id) ");
+    }
+
     public static function find_by_id($id){
         $result =  static::find_by_query("SELECT * FROM ".static::$db_table." WHERE id = $id ");
 
