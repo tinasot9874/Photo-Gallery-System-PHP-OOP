@@ -73,8 +73,8 @@
                                     <td><?php echo $value->create_at; ?></td>
                                     <td>
 
-                                        <a style="cursor: pointer;" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
-                                        <a style="cursor: pointer;" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="edit.php?edit_photo=<?php echo $value->id; ?>" style="cursor: pointer;" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
+                                        <a href="delete.php?photo=<?php echo $value->id; ?>" style="cursor: pointer;" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
