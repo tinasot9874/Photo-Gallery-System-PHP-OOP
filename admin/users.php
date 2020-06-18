@@ -30,7 +30,41 @@
                 </div>
             </div>
             <!-- /.row -->
+            <div class="row">
+                <div class="container">
+                    <div class="table-wrapper">
+                        <div class="col-md-12">
+                            <div class="row" style=" margin-bottom: 25px; margin-top: 25px;">
+                                <div class="col-md-3">
+                                    <input class="form-control" id="myInput" type="text" placeholder="Search User">
+                                </div>
+                            </div>
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                <?php $user = User::find_all();
+                                foreach ($user as $value):
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $value->username; ?></td>
+                                        <td><?php echo $value->first_name; ?></td>
+                                        <td><?php echo $value->last_name; ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
 
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <!-- /.container-fluid -->
 
