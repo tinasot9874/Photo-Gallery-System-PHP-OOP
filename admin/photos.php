@@ -13,29 +13,29 @@
         <div class="container-fluid">
             <div class="col-md-12">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Photos Page
-                        <small>List</small>
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i>  <a href="index.php">Dashboard</a>
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-file"></i> Photos Page
-                        </li>
-                    </ol>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Photos Page
+                            <small>List</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.php">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-file"></i> Photos Page
+                            </li>
+                        </ol>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
+                <div class="row">
                 <div class="container">
                     <div class="table-wrapper">
                         <div class="table-title">
                             <div class="row">
-                                <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div>
+                                <div class="col-sm-8"></div>
                                 <div class="col-sm-4">
                                     <a href="upload.php" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</a>
                                 </div>
