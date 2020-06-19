@@ -7,7 +7,6 @@ class User extends Db_object {
     public $username;
     public $first_name;
     public $last_name;
-    public $password;
 
 
     function __construct()
@@ -28,15 +27,7 @@ class User extends Db_object {
             $sql = "SELECT * FROM ".self::$db_table." WHERE username = '{$username}' AND password = '{$password}' ";
 
             $the_result_array = self::find_by_query($sql);
-            return !empty($the_result_array) ? array_shift($the_result_array) : false;
+        return !empty($the_result_array) ? array_shift($the_result_array) : false;
         }
-
-
-
-
-
-
-
-
 
 }
