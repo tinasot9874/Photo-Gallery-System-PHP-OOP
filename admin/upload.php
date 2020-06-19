@@ -6,7 +6,7 @@ if (isset($_POST['uploads_image'])) {
     $photo = new Photo();
     $photo->user_id = $session->user_id;
     $photo->title = $_POST['title'];
-    //$photo->categories_id = $_POST['cate'];
+    $photo->categories_id = $_POST['cate'];
     $photo->set_file($_FILES['file_upload']);
 
     if ($photo->save()){
