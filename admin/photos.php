@@ -29,6 +29,12 @@
                         </ol>
                     </div>
                 </div>
+                <?php
+
+
+
+
+                ?>
 
                 <div class="row">
                 <div class="container">
@@ -52,6 +58,7 @@
                                 <thead>
                                 <tr>
                                     <th>Photo</th>
+                                    <th>User Upload</th>
                                     <th>Title</th>
                                     <th>Category</th>
                                     <th>Type</th>
@@ -66,6 +73,7 @@
                                 ?>
                                 <tr>
                                     <td><img class="img-responsive" style="width:200px;height: 100px;object-fit: contain; " src="<?php echo $value->picture_path() ?>" alt=""></td>
+                                    <td><?php $user = User::find_by_id($value->user_id); echo $user->username;  ?></td>
                                     <td><?php echo $value->title; ?></td>
                                     <td><?php $category = Category::find_by_id($value->categories_id); echo $category->category_name;  ?></td>
                                     <td><?php echo $value->type; ?></td>
