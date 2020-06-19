@@ -2,8 +2,10 @@
 class Session{
 
     private $signed_in = false;
+    public $user_id;
     public $username;
     public $message;
+
 
     function __construct()
     {
@@ -19,6 +21,7 @@ class Session{
 
     public function login($user){
         if ($user){
+            $this->user_id  = $_SESSION['user_id'] = $user->id;
             $this->username = $_SESSION['username'] = $user->username;
             $this->signed_in = true;
         }
@@ -26,12 +29,15 @@ class Session{
 
     public function logout(){
         unset($_SESSION['username']);
+        unset($_SESSION['user_id']);
         unset($this->username);
+        unset($this->user_id);
         $this->signed_in = false;
     }
 
     private function check_the_login(){
         if (isset($_SESSION['username'])){
+            $this->user_id  = $_SESSION['user_id'];
             $this->username = $_SESSION['username'];
             $this->signed_in = true;
         } else{
