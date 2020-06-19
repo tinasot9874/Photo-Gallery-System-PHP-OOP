@@ -4,7 +4,7 @@ $message = "";
 if (isset($_POST['uploads_image'])) {
 
     $photo = new Photo();
-
+    $photo->user_id = $session->user_id;
     $photo->title = $_POST['title'];
     //$photo->categories_id = $_POST['cate'];
     $photo->set_file($_FILES['file_upload']);
@@ -58,12 +58,13 @@ if (isset($_POST['uploads_image'])) {
                                   enctype="multipart/form-data">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="title">Title:</label>
                                         <input type="text" name="title" id="title" tabindex="1" class="form-control"
-                                               placeholder="Title Image" value="">
+                                               placeholder="Title Image" value="" required>
                                     </div>
                                     <div class="form-group">
-                                        <select class="custom-select mr-sm-2 form-control" name="cate">
-                                            <option selected disabled>Select Categories</option>
+                                        <select class="custom-select mr-sm-2 form-control" name="cate" required>
+                                            <option value="">Select Categories</option>
                                             <?php
                                             $categories = Category::find_all();
                                             foreach ($categories as $value) {
@@ -76,7 +77,7 @@ if (isset($_POST['uploads_image'])) {
                                         <h5>Choose images to uploads</h5>
                                         <span class="btn btn-primary btn-file">Browse file <input type="file"
                                                                                                   name="file_upload"
-                                                                                                  onchange="readURL(this);"></span>
+                                                                                                  onchange="readURL(this);" required></span>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="uploads_image" id="uploads_image" tabindex="1"
