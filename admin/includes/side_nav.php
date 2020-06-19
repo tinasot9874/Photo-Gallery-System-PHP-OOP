@@ -6,12 +6,11 @@
         <li>
             <a href="users.php"><i class="fas fa-fw fa-users"></i> Users</a>
         </li>
-
-        <li>
-            <a href="comments.php"><i class="fas fa-comments"></i> Comments</a>
-        </li>
         <li>
             <a href="photos.php"><i class="fas fa-images"></i> Photos</a>
+        </li>
+        <li>
+            <a href="categories.php"><i class="fas fa-images"></i> Category</a>
         </li>
 <!--        <li>-->
 <!--            <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>-->
