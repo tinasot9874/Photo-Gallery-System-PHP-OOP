@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="../public/">Back to Client Page</a>
+    <a class="navbar-brand" href="../">Back to Client Page</a>
 </div>
 <!-- Top Menu Items -->
 <ul class="nav navbar-right top-nav">
