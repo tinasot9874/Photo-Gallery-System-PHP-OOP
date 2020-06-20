@@ -2,23 +2,19 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="js/jquery/jquery-3.2.1.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#preview').attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
+
+
+
+
+
+
 
 <script>
+    /* Table Search*/
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
@@ -26,10 +22,8 @@
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
-    }
-</script>
+    });
 
-<script language="javascript">
     function ChangeToSlug()
     {
         var title, slug;
@@ -63,6 +57,16 @@
         slug = slug.replace(/\@\-|\-\@|\@/gi, '');
         //In slug ra textbox có id “slug”
         document.getElementById('cate_slug').value = slug;
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#preview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     }
 </script>
 
