@@ -46,6 +46,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Status</th>
+                                    <th>Role</th>
                                 </tr>
                                 </thead>
                                 <tbody id="myTable">
@@ -57,6 +58,7 @@
                                         <td><?php echo $value->first_name; ?></td>
                                         <td><?php echo $value->last_name; ?></td>
                                         <td><?php if ($value->status == 0 ){ echo "Active"; }else{ echo "Suspented"; } ?></td>
+                                        <td><?php if ($value->role == 1) { echo "Admin";}else { echo "Member";} ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                                 </tbody>
