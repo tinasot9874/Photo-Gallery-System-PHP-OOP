@@ -16,8 +16,14 @@ if (isset($_POST['login-submit'])){
 
 
     if ($user_found){
-        $session->login($user_found);
-        redirect("index.php");
+        // verify role admin
+        if ($user_found->role == 1){
+            $session->login($user_found);
+            redirect("index.php");
+        }else{
+            redirect("403.html");
+        }
+
     }else{
         $the_message = "Your username or password were incorrect.";
     }
