@@ -17,7 +17,7 @@
                 <a href="#">
                     <div class="media">
                                     <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                        <img class="media-object" src="https://placehold.it/50x50" alt="">
                                     </span>
                         <div class="media-body">
                             <h5 class="media-heading">
@@ -33,7 +33,7 @@
                 <a href="#">
                     <div class="media">
                                     <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                        <img class="media-object" src="https://placehold.it/50x50" alt="">
                                     </span>
                         <div class="media-body">
                             <h5 class="media-heading">
@@ -49,7 +49,7 @@
                 <a href="#">
                     <div class="media">
                                     <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                        <img class="media-object" src="https://placehold.it/50x50" alt="">
                                     </span>
                         <div class="media-body">
                             <h5 class="media-heading">
