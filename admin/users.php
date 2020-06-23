@@ -45,6 +45,7 @@
                                     <th>Username</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
+                                    <th>Email</th>
                                     <th>Status</th>
                                     <th>Role</th>
                                 </tr>
@@ -57,11 +58,13 @@
                                         <td><?php echo $value->username; ?></td>
                                         <td><?php echo $value->first_name; ?></td>
                                         <td><?php echo $value->last_name; ?></td>
-                                        <td><?php if ($value->status == 0 ){ echo "Active"; }else{ echo "Suspented"; } ?></td>
-                                        <td><?php if ($value->role == 1) { echo "Admin";}else { echo "Member";} ?></td>
+                                        <td><?php echo $value->email; ?></td>
+                                        <td><?php if ($value->status == 0 ){ echo "<span class='label label-success'> Active </span>"; }else{ echo "<span class='label label-danger'> Suspented </span>"; } ?></td>
+                                        <td><?php if ($value->role == 1) { echo "<span class='label' style='background-color: #fec107; '> Admin </span>";}else { echo "<span class='label label-info' '> Member </span>";} ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                                 </tbody>
+
                             </table>
 
                         </div>
