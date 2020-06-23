@@ -7,9 +7,7 @@
         <?php include("includes/side_nav.php"); ?>
         <!-- /.navbar-collapse -->
     </nav>
-
     <div id="page-wrapper">
-
         <div class="container-fluid">
             <div class="col-md-12">
             <!-- Page Heading -->
@@ -29,13 +27,6 @@
                         </ol>
                     </div>
                 </div>
-                <?php
-
-
-
-
-                ?>
-
                 <div class="row">
                 <div class="container">
                     <div class="table-wrapper">
@@ -47,7 +38,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-12">
                             <div class="row" style="margin-bottom: 25px; margin-top: 25px;">
                                 <div class="col-md-3">
@@ -77,10 +67,9 @@
                                     <td><?php echo $value->title; ?></td>
                                     <td><?php $category = Category::find_by_id($value->categories_id); echo $category->category_name;  ?></td>
                                     <td><?php echo $value->type; ?></td>
-                                    <td><?php echo $value->size; ?></td>
+                                    <td><?php echo round($value->size / 1000000, 2); ?> Mb</td>
                                     <td><?php echo $value->create_at; ?></td>
                                     <td>
-
                                         <a href="edit.php?edit_photo=<?php echo $value->id; ?>" style="cursor: pointer;" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
                                         <a href="delete.php?photo=<?php echo $value->id; ?>" style="cursor: pointer;" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                                     </td>
@@ -88,19 +77,15 @@
                                 <?php endforeach; ?>
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
-
             </div>
             <!-- /.row -->
             </div>
 
         </div>
         <!-- /.container-fluid -->
-
-
     </div>
     <!-- /#page-wrapper -->
 
