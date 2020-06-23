@@ -2,11 +2,12 @@
 
 class User extends Db_object {
     protected static $db_table = "users";
-    protected static $db_table_fields = array('username', 'password', 'first_name', 'last_name', 'status', 'role');
+    protected static $db_table_fields = array('username', 'password', 'first_name', 'last_name', 'email' , 'status', 'role');
     public $id;
     public $username;
     public $first_name;
     public $last_name;
+    public $email;
     public $status;
     public $role;
 
