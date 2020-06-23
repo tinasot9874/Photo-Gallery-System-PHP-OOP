@@ -16,7 +16,7 @@ class Photo extends Db_object{
 
     // file uploads
     public $tmp_path;
-    public $upload_directory = "images";
+    public $upload_directory = "images" . DS . 'original';
     public $errors = array();
     public $upload_errors_array = array(
 
@@ -35,9 +35,9 @@ class Photo extends Db_object{
     public function set_file($file){
 
         // Allow certain file formats
-        $file_ext=strtolower(end(explode('.',$file['type'])));
+        $file_ext= $file['type'];
         $extensions= array("image/jpeg","image/jpg","image/png");
-        if(in_array($file_ext,$extensions)=== false){
+        if(in_array($file_ext,$extensions) === false){
             $this->errors[] = "Sorry, only JPG, JPEG & PNG files are allowed.";
         }
 
