@@ -11,8 +11,10 @@ if (isset($_POST['uploads_image'])) {
 
     if ($photo->save()){
         $message = "Photo Upload Successfully!";
+        redirect("upload.php?msg_success={$message}");
     }else{
         $message = join("<br>", $photo->errors);
+        redirect("upload.php?msg_fails={$message}");
     }
 }
 
@@ -50,7 +52,17 @@ if (isset($_POST['uploads_image'])) {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row text-center">
-                        <p><?php echo $message; ?></p>
+                        <p><?php
+                            if (isset($_GET['msg_success']))
+                            {
+                                echo $_GET['msg_success'];
+                            }
+                            if (isset($_GET['msg_fails']))
+                            {
+                                echo $_GET['msg_fails'];
+                            }
+
+                        ?></p>
                     </div>
                     <div class="container">
                         <div class="row">
