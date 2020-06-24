@@ -17,6 +17,7 @@ class Photo extends Db_object{
     // file uploads
     public $tmp_path;
     public $upload_directory = "images" . DS . 'original';
+    public $upload_directory_resize = "images" . DS . 'thumbnail';
     public $errors = array();
     public $upload_errors_array = array(
 
@@ -70,18 +71,32 @@ class Photo extends Db_object{
 
 
             $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->filename;
+            $target_path_original_string = strval($target_path);
+
+            // resize target_dir folder
+            $target_path_resize = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory_resize . DS . $this->filename;
+
+            $target_path_filename_resize_string = strval($target_path_resize);
+
             if (file_exists($target_path)){
                 $this->errors[] = "The file {$this->filename} already exists";
                 return false;
             }
 
             if (move_uploaded_file($this->tmp_path, $target_path)){
+
+                // move resize image to thumbnail dir
+                $resize = new ResizeImage($target_path_original_string);
+                $resize->resizeTo(500, 500);
+                $resize->saveImage($target_path_filename_resize_string, 100);
+
+
                 if ($this->create()){
                     unset($this->tmp_path);
                     return true;
                 }
             }else{
-                $this->errors[] = "The file directory does not have permission!";
+                $this->errors[] = "The file directory does not have permission or can't find the folder!";
                 return false;
             }
         }
@@ -90,7 +105,9 @@ class Photo extends Db_object{
     public function picture_path(){
         return $this->upload_directory.DS.$this->filename;
     }
-
+    public function picture_resize_path(){
+        return $this->upload_directory_resize.DS.$this->filename;
+    }
     public function delete(){
         if (parent::delete()){
             $target_path = SITE_ROOT.DS.'admin'.DS.$this->picture_path();
