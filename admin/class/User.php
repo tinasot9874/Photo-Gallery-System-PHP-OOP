@@ -2,8 +2,9 @@
 
 class User extends Db_object {
     protected static $db_table = "users";
-    protected static $db_table_fields = array('username', 'password', 'first_name', 'last_name', 'email' , 'status', 'role');
+    protected static $db_table_fields = array('user_image', 'username', 'password', 'first_name', 'last_name', 'email' , 'status', 'role');
     public $id;
+    public $user_image;
     public $username;
     public $first_name;
     public $last_name;
@@ -11,6 +12,8 @@ class User extends Db_object {
     public $status;
     public $role;
 
+
+    public $upload_directory = "images".DS."user";
 
     function __construct()
     {
@@ -30,7 +33,11 @@ class User extends Db_object {
             $sql = "SELECT * FROM ".self::$db_table." WHERE username = '{$username}' AND password = '{$password}' ";
 
             $the_result_array = self::find_by_query($sql);
-        return !empty($the_result_array) ? array_shift($the_result_array) : false;
-        }
+            return !empty($the_result_array) ? array_shift($the_result_array) : false;
+    }
+    public function default_avatar(){
+        return $this->upload_directory.DS.'default-avatar.png';
+    }
+
 
 }
