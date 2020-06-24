@@ -42,6 +42,7 @@
                             <table class="table table-hover table-bordered">
                                 <thead>
                                 <tr>
+                                    <th>Avatar</th>
                                     <th>Username</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
@@ -55,6 +56,7 @@
                                 foreach ($user as $value):
                                     ?>
                                     <tr>
+                                        <td><img style="width:100px;height: 100px;object-fit: contain; " src="<?php echo $value->default_avatar(); ?>" alt=""></td>
                                         <td><?php echo $value->username; ?></td>
                                         <td><?php echo $value->first_name; ?></td>
                                         <td><?php echo $value->last_name; ?></td>
