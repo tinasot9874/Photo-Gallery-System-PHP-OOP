@@ -49,7 +49,12 @@ class Photo extends Db_object{
             $this->errors[] = $this->upload_errors_array[$file['error']];
             return false;
         }else{
-            $this->filename = basename($file['name']); // Name of the file
+            // create a random file name for image
+            $file_extension_arr = explode('.',basename($file['name']));
+            $file_extension_string = strtolower($file_extension_arr[count($file_extension_arr)-1]);
+            $file_name = substr(md5(basename($file['name'].time())), 5, 15).".".$file_extension_string;
+
+            $this->filename = $file_name; // Name of the file
             $this->tmp_path = $file['tmp_name'];
             $this->type     = $file['type'];
             $this->size     = $file['size'];
@@ -110,8 +115,13 @@ class Photo extends Db_object{
     }
     public function delete(){
         if (parent::delete()){
-            $target_path = SITE_ROOT.DS.'admin'.DS.$this->picture_path();
-            return unlink($target_path) ? true : false;
+            $target_path_original = SITE_ROOT.DS.'admin'.DS.$this->picture_path();
+            $target_path_thumb    = SITE_ROOT.DS.'admin'.DS.$this->picture_resize_path();
+            if (unlink($target_path_original) && unlink($target_path_thumb)){
+                return true;
+            }else{
+                return false;
+            }
         } else{
             return false;
         }
