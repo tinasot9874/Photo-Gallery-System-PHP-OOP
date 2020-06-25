@@ -126,4 +126,12 @@ class Photo extends Db_object{
             return false;
         }
     }
+    // Count photo upload by user id
+    public static function count_photo_by_user_id($id){
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . static::$db_table . " WHERE user_id = $id ";
+        $count = $database->query($sql);
+        $row = mysqli_fetch_array($count);
+        return array_shift($row);
+    }
 }
