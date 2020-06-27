@@ -9,35 +9,38 @@
     </nav>
     <div id="page-wrapper">
         <div class="container-fluid">
-                <div class="col-md-12 col-sm-12">
-                    <!-- Page Heading -->
-                    <div class="row">
-                        <h1 class="page-header">
-                            Photos Page
-                            <small>List</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i> <a href="index.php">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-file"></i> Photos Page
-                            </li>
-                        </ol>
+            <div class="col-md-12 col-sm-12">
+                <!-- Page Heading -->
+                <div class="row">
+                    <h1 class="page-header">
+                        Photos Page
+                        <small>List</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i> <a href="index.php">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-file"></i> Photos Page
+                        </li>
+                    </ol>
 
-                        <a style="float:right;" href="upload.php" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add
-                            New</a>
+                    <a style="float:right;" href="upload.php" type="button" class="btn btn-info add-new"><i
+                                class="fa fa-plus"></i> Add
+                        New</a>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div>
+                            <input class="form-control" id="myInput" type="text" placeholder="Search Photo">
+                        </div>
                     </div>
                     <hr>
-                    <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                    <div>
-                                        <input class="form-control" id="myInput" type="text" placeholder="Search Photo">
-                                    </div>
-                            </div>
-                            <hr>
-                            <div class="col-md-12 col-sm-12">
-                                <table class="table">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="table-responsive">
+                            <div style="width: 100%; height:350px; overflow:auto;">
+                                <table class="table table-hover table-bordered">
                                     <thead>
                                     <tr>
                                         <th>Photo</th>
@@ -78,9 +81,11 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
                     </div>
-                    <!-- /.row -->
                 </div>
+                <!-- /.row -->
+            </div>
         </div>
         <!-- /.container-fluid -->
     </div>

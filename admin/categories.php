@@ -80,6 +80,7 @@ if (isset($_POST['add_cate'])) {
                                         <input class="form-control" id="myInput" type="text" placeholder="Search Category">
                                     </div>
                                 </div>
+                                <div style="width: 100%; height:350px; overflow:auto;">
                                 <table class="table table-hover table-bordered">
                                     <thead>
                                     <tr>
@@ -102,7 +103,7 @@ if (isset($_POST['add_cate'])) {
                                     <?php endforeach; ?>
                                     </tbody>
                                 </table>
-
+                                </div>
                             </div>
                         </div>
                     </div>
