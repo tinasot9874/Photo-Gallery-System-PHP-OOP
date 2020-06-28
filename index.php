@@ -65,7 +65,7 @@ $photo = Photo::find_all();
 				<div class="photograhy">
 					<div class="row no-gutters">
                         <?php foreach ($photo as $value): ?>
-						<div class="col-md-4 ftco-animate">
+						<div class="col-md-3 ftco-animate">
 							<a href="<?php echo "admin".DS.$value->picture_path(); ?>" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(admin/images/thumbnail/<?php echo $value->filename; ?>);">
 								<div class="overlay"></div>
 								<div class="text text-center">
