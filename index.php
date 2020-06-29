@@ -1,6 +1,9 @@
+<?php require_once("admin/core/init.php"); ?>
+
 <?php
-require_once("admin/core/init.php");
-$photo = Photo::find_all();
+$sql = "SELECT * FROM photos LIMIT 20";
+$photo = Photo::find_by_query($sql);
+$photo_id = '';
 
 ?>
 <!DOCTYPE html>
@@ -68,24 +71,17 @@ $photo = Photo::find_all();
     <div id="colorlib-main">
         <section class="ftco-section-2">
             <div class="photograhy">
-                <div class="row no-gutters">
-                    <?php foreach ($photo as $value): ?>
-                        <div class="col-md-3 ftco-animate">
-                            <a href="<?php echo "admin" . DS . $value->picture_path(); ?>"
-                               class="photography-entry img image-popup d-flex justify-content-center align-items-center"
-                               style="background-image: url(admin/images/thumbnail/<?php echo $value->filename; ?>);">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <h3>Work 01</h3>
-                                    <span class="tag">Model</span>
-                                </div>
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-
+                <div class="row no-gutters" id="load_data_table">
+<!--                    <div class="btn_more" id="remove_row">-->
+<!--                        <button type="button" name="btn_more" data-vid="--><?php //echo $photo_id; ?><!--" id="btn_more" class="btn btn-info">load more</button>-->
+<!--                    </div>-->
                 </div>
+                <img id="loading" src="css/ajax-loader.gif" >
             </div>
+
         </section>
+
+
         <footer class="ftco-footer ftco-bg-dark ftco-section">
             <div class="container px-md-5">
                 <div class="row mb-5">
@@ -131,18 +127,17 @@ $photo = Photo::find_all();
                 <div class="row">
                     <div class="col-md-12">
 
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p style="text-align: center;">
                             Copyright &copy;<script>document.write(new Date().getFullYear());</script>
                             All rights reserved | This template is made with <i class="icon-heart"
                                                                                 aria-hidden="true"></i> by <a
-                                    href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                                    href="https://minhieu.com" target="_blank">Minh Hieu</a></p>
                     </div>
                 </div>
             </div>
         </footer>
-    </div><!-- END COLORLIB-MAIN -->
-</div><!-- END COLORLIB-PAGE -->
+    </div>
+</div>
 
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen">
@@ -152,8 +147,6 @@ $photo = Photo::find_all();
                 stroke="#F96D00"/>
     </svg>
 </div>
-
-
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
 <script src="js/popper.min.js"></script>
@@ -166,10 +159,7 @@ $photo = Photo::find_all();
 <script src="js/aos.js"></script>
 <script src="js/jquery.animateNumber.min.js"></script>
 <script src="js/bootstrap-datepicker.js"></script>
-<script src="public/js/jquery.timepicker.min.js"></script>
 <script src="js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
 
 </body>
