@@ -22,7 +22,7 @@ class Photo extends Db_object{
     public $upload_errors_array = array(
 
         UPLOAD_ERR_OK           => 'There is no error, the file uploaded with success',
-        UPLOAD_ERR_INI_SIZE     => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+        UPLOAD_ERR_INI_SIZE     => 'You only can upload file < 200MB',
         UPLOAD_ERR_FORM_SIZE    => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
         UPLOAD_ERR_PARTIAL      => 'The uploaded file was only partially uploaded',
         UPLOAD_ERR_NO_FILE      => 'No file was uploaded',
@@ -39,8 +39,13 @@ class Photo extends Db_object{
         $file_ext= $file['type'];
         $extensions= array("image/jpeg","image/jpg","image/png");
         if(in_array($file_ext,$extensions) === false){
-            $this->errors[] = "Sorry, only JPG, JPEG & PNG files are allowed.";
+            $this->errors[] = "Sorry, only JPG, JPEG and PNG files are allowed.";
         }
+
+        // Check file size
+//        if ($file["size"] > 50000000) {
+//            $this->errors[] = "Sorry, your file is too large.";
+//        }
 
         if (empty($file) || !$file || !is_array($file)){
             $this->errors[] = "There was no file uploaded !";
