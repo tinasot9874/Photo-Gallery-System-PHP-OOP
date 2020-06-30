@@ -33,7 +33,6 @@ $photo_id = '';
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -67,7 +66,12 @@ $photo_id = '';
                 </ul>
             </div>
         </div>
-    </aside> <!-- END COLORLIB-ASIDE -->
+    </aside>
+
+    <!-- END COLORLIB-ASIDE -->
+
+
+
     <div id="colorlib-main">
         <section class="ftco-section-2">
             <div class="photograhy">
@@ -76,7 +80,6 @@ $photo_id = '';
 <!--                        <button type="button" name="btn_more" data-vid="--><?php //echo $photo_id; ?><!--" id="btn_more" class="btn btn-info">load more</button>-->
 <!--                    </div>-->
                 </div>
-                <img id="loading" src="css/ajax-loader.gif" >
             </div>
 
         </section>
@@ -136,6 +139,7 @@ $photo_id = '';
                 </div>
             </div>
         </footer>
+        <button id="topBtn"><i class="icon-keyboard_arrow_up"></i></button>
     </div>
 </div>
 
