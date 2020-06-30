@@ -7,7 +7,6 @@ $(document).ready(function () {
 	"use strict";
 
 
-	$('#loading').show();
 	var flag = 0;
 	$.ajax({
 		type: "GET",
@@ -372,6 +371,16 @@ $(document).ready(function () {
 		}
 	});
 
+		$(window).scroll(function(){
+			if($(this).scrollTop() > 500){
+				$('#topBtn').fadeIn();
+			}else{
+				$('#topBtn').fadeOut();
+			}
+		});
+		$("#topBtn").click(function(){
+			$('html, body').animate({scrollTop : 0}, 650);
+		});
 
 	// load more button function
 	/*$(document).on('click', '#btn_more', function(){
